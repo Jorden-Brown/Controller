@@ -47,23 +47,31 @@ public class MainController {
 	    return time1.format(DateTimeFormatter.ofPattern(format));//formatter.format(Date.from(time1.toInstant(ZoneOffset.)));
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value="/Testing")
+	public timeZone TestThis() {
+		timeZone tz = new timeZone(); 
+		tz.setName("Test1");
+		tz.setTz("Test2");
+		return tz; 
+	}
 	
 	// taking in a body request "timezone" using json 
 	@PostMapping("/UTC")
-	public ZonedDateTime getUTCTime(@RequestBody String tz){
+	public String getUTCTime(){
 		Date date = new Date(System.currentTimeMillis());	
 		
 		LocalDateTime time = LocalDateTime.now();
-		ZonedDateTime time2 = ZonedDateTime.now(ZoneId.of(tz));
+		ZonedDateTime time2 = ZonedDateTime.now(ZoneId.of("UTC"));
 		
-		return time2;
+		return time2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a z"));
 	    
 	}
 	
 	
 	
+	
 	@GetMapping("/hello")
 	public String base() {
-		return"hello world";
+		return "Hello world";
 	}
 }

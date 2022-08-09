@@ -18,6 +18,11 @@ public class timeZone {
 	} 
 	
 	
-	
+	public boolean DoesEqual(timeZone tz) {
+		if(this.getName().equals(tz.getName()) && this.getTz().equals(tz.getTz())) {
+			return true;
+		}
+		return false; 
+	}
 	
 }
